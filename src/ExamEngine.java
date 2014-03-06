@@ -25,7 +25,7 @@ public class ExamEngine {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         Date date = new Date();
 
-        System.out.println("Please enter your name.");
+        System.out.println("Pretty Please enter your name.");
         name = sc.readString(false);
         rightWords = name + " - " + dateFormat.format(date) + " Correct Words: ";
         System.out.println("Welcome to the spelling test " + name + " here is your first word and the remaining 49 will follow\n");
