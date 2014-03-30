@@ -1,16 +1,8 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 import java.io.*;
-
-/**
- * Created by chc238u20 on 2/25/14.
- */
 
 public class ExamEngine {
     static CinReader sc = new CinReader();
@@ -25,22 +17,19 @@ public class ExamEngine {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         Date date = new Date();
 
-        System.out.println("Pretty Please enter your name.");
+        System.out.println("Please enter your name");
         name = sc.readString(false);
-        rightWords = name + " - " + dateFormat.format(date) + " Correct Words: ";
+        name = name.toLowerCase();
+        rightWords = name + "\r\n" + dateFormat.format(date) + "\r\nCorrect Words:\r\n";
         System.out.println("Welcome to the spelling test " + name + " here is your first word and the remaining 49 will follow\n");
         for (int i = 0; i < wordOrder.length; i++)
         {
-            System.out.println(getDef(wordOrder[i]));
+            System.out.println(getDef(wordOrder[i]) + wordOrder[i]);
             answer = sc.readString(false);
-            if (answer.equalsIgnoreCase("end"))
-            {
-                break;
-            }
-            else if(answer.equalsIgnoreCase(getWord(wordOrder[i])))
+            if(answer.equalsIgnoreCase(getWord(wordOrder[i])))
             {
                 System.out.println("Correct!\n");
-                rightWords += getWord(wordOrder[i]) + "-";
+                rightWords += getWord(wordOrder[i]) + "\r\n";
                 score++;
             }
             else
@@ -56,7 +45,6 @@ public class ExamEngine {
     private static String getDef(int defNum)
     {
         String def = "";
-        defNum -= 2;
         try {
             FileInputStream fs = new FileInputStream("defs.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(fs));
@@ -76,7 +64,6 @@ public class ExamEngine {
     private static String getWord(int wordNum)
     {
         String word = "";
-        wordNum -= 2;
         try {
             FileInputStream fs = new FileInputStream("words.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(fs));
